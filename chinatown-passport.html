@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinatown Passport | Chinatown Solidarity Summit</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap');
+
+        :root {
+            --cream: #E8DDD3;
+            --warm-beige: #D9CBBE;
+            --deep-red: #B22234;
+            --accent-red: #C4392D;
+            --dark-brown: #3D2B1F;
+            --gold: #C49A3C;
+            --soft-gold: #D4AF61;
+            --charcoal: #2C2C2C;
+            --off-white: #F5F0EB;
+            --sage: #7A8B6F;
+            --muted-teal: #5A7D7C;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== PAGE SYSTEM ===== */
+        .page {
+            display: none;
+            min-height: 100vh;
+            animation: fadeIn 0.35s ease;
+        }
+        .page.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== COVER PAGE ===== */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--cream);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .passport-book {
+            width: clamp(280px, 50vw, 420px);
+            background: var(--deep-red);
+            border-radius: 8px;
+            padding: 40px 32px 36px;
+            margin-bottom: 32px;
+            box-shadow:
+                inset 0 0 0 3px rgba(196,159,60,0.35),
+                inset 0 0 0 6px var(--deep-red),
+                inset 0 0 0 8px rgba(196,159,60,0.2),
+                0 12px 40px rgba(61,43,31,0.25),
+                4px 0 0 0 #8B1A28,
+                6px 0 0 0 #6E1520;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .passport-book:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                inset 0 0 0 3px rgba(196,159,60,0.35),
+                inset 0 0 0 6px var(--deep-red),
+                inset 0 0 0 8px rgba(196,159,60,0.2),
+                0 20px 50px rgba(61,43,31,0.3),
+                4px 0 0 0 #8B1A28,
+                6px 0 0 0 #6E1520;
+        }
+
+        .passport-book::before {
+            content: '';
+            position: absolute;
+            top: 12px; left: 12px; right: 12px; bottom: 12px;
+            border: 1px solid rgba(196,159,60,0.25);
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        .passport-crest {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+            border: 2px solid var(--soft-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .passport-crest svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .passport-book h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 900;
+            color: var(--soft-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            line-height: 1.15;
+            margin-bottom: 4px;
+        }
+
+        .passport-book h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(16px, 2.5vw, 24px);
+            font-weight: 400;
+            color: rgba(212,175,97,0.7);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .passport-chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(14px, 2vw, 20px);
+            color: rgba(212,175,97,0.6);
+            letter-spacing: 6px;
+            margin-bottom: 24px;
+        }
+
+        .passport-divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(212,175,97,0.3);
+            margin: 0 auto 16px;
+        }
+
+        .passport-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(212,175,97,0.5);
+        }
+
+        .cover-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(13px, 1.8vw, 17px);
+            color: var(--dark-brown);
+            font-style: italic;
+            max-width: 560px;
+            margin-bottom: 32px;
+            opacity: 0.7;
+        }
+
+        .cover-enter {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--deep-red);
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .cover-enter:hover { background: #9A1D2E; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(178,34,52,0.25); }
+
+        /* ===== DIRECTORY PAGE ===== */
+        .directory {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .dir-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .dir-header-crest {
+            margin-bottom: 12px;
+        }
+
+        .dir-logo {
+            width: 120px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .dir-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--deep-red);
+            margin-bottom: 6px;
+        }
+
+        .dir-header p {
+            font-size: 13px;
+            color: var(--dark-brown);
+            opacity: 0.5;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .dir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .dir-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 20px;
+            background: var(--off-white);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .dir-card:hover {
+            border-color: var(--deep-red);
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+        }
+
+        .dir-card-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--deep-red);
+            min-width: 36px;
+        }
+
+        .dir-card-thumb {
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .dir-card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 10px;
+            background: rgba(178,34,52,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .dir-card-icon svg {
+            width: 38px;
+            height: 38px;
+        }
+        .dir-card:hover .dir-card-icon {
+            background: rgba(178,34,52,0.1);
+        }
+
+        .dir-card-info { flex: 1; }
+
+        .dir-card-city {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--charcoal);
+        }
+
+        .dir-card-region {
+            font-size: 12px;
+            color: var(--dark-brown);
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dir-card-arrow {
+            color: var(--deep-red);
+            opacity: 0.3;
+            font-size: 18px;
+            transition: opacity 0.2s;
+        }
+        .dir-card:hover .dir-card-arrow { opacity: 0.8; }
+
+        /* ===== CITY DETAIL PAGE ===== */
+        .city-page-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(232, 221, 211, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(61,43,31,0.08);
+            padding: 10px 20px;
+        }
+
+        .city-page-nav-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: 1px solid rgba(61,43,31,0.15);
+            padding: 7px 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--dark-brown);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover { background: white; border-color: var(--deep-red); color: var(--deep-red); }
+
+        .nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--deep-red);
+        }
+
+        .nav-arrows {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-arrow-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 1px solid rgba(61,43,31,0.15);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            color: var(--dark-brown);
+            transition: all 0.2s;
+        }
+        .nav-arrow-btn:hover { background: var(--deep-red); color: white; border-color: var(--deep-red); }
+        .nav-arrow-btn:disabled { opacity: 0.25; cursor: default; background: none; color: var(--dark-brown); border-color: rgba(61,43,31,0.1); }
+
+        .city-detail {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 30px 20px 80px;
+        }
+
+        /* City Header */
+        .city-hero {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 32px;
+            background: var(--dark-brown);
+        }
+
+        .city-hero-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
+        .city-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 32px 28px;
+            background: linear-gradient(transparent, rgba(30,20,15,0.85));
+        }
+
+        .city-hero-number {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: var(--soft-gold);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .city-hero-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 5vw, 50px);
+            font-weight: 900;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .city-hero-chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 18px;
+            color: var(--soft-gold);
+            margin-bottom: 6px;
+        }
+
+        .city-hero-location {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Image Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.02); }
+
+        /* Cards */
+        .card {
+            background: var(--off-white);
+            border-radius: 12px;
+            padding: 28px 28px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(61,43,31,0.05);
+        }
+
+        .card-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+        .card-label.about { background: rgba(178,34,52,0.08); color: var(--deep-red); }
+        .card-label.strengths { background: rgba(122,139,111,0.15); color: var(--sage); }
+        .card-label.challenges { background: rgba(196,159,60,0.15); color: #8B7024; }
+        .card-label.orgs { background: rgba(90,125,124,0.12); color: var(--muted-teal); }
+
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            color: var(--dark-brown);
+            margin-bottom: 14px;
+        }
+
+        .card p, .card li {
+            font-size: 15px;
+            line-height: 1.75;
+            color: var(--charcoal);
+            opacity: 0.85;
+        }
+
+        .card ul { padding-left: 20px; }
+        .card li { margin-bottom: 8px; }
+        .card li::marker { color: var(--deep-red); }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .fact-item {
+            text-align: center;
+            padding: 14px 8px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .fact-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--deep-red);
+            margin-bottom: 2px;
+        }
+
+        .fact-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark-brown);
+            opacity: 0.5;
+        }
+
+        .org-list { list-style: none; padding: 0; }
+        .org-list li {
+            padding: 12px 16px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border-left: 3px solid var(--muted-teal);
+        }
+        .org-list li strong { display: block; font-size: 15px; color: var(--dark-brown); margin-bottom: 2px; }
+        .org-list li span { font-size: 13px; color: var(--charcoal); opacity: 0.6; }
+
+        /* Bottom nav */
+        .city-bottom-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(61,43,31,0.1);
+        }
+
+        .bottom-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: 1px solid rgba(61,43,31,0.15);
+            padding: 12px 24px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark-brown);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .bottom-nav-btn:hover { background: var(--deep-red); color: white; border-color: var(--deep-red); }
+        .bottom-nav-btn.primary { background: var(--deep-red); color: white; border-color: var(--deep-red); }
+        .bottom-nav-btn.primary:hover { background: #9A1D2E; }
+
+        /* City quick-nav dropdown */
+        .city-quick-nav {
+            position: relative;
+            display: inline-block;
+        }
+
+        .city-quick-nav-dropdown {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            padding: 8px;
+            margin-bottom: 8px;
+            width: 220px;
+            max-height: 320px;
+            overflow-y: auto;
+            z-index: 200;
+        }
+        .city-quick-nav-dropdown.show { display: block; }
+
+        .city-quick-nav-dropdown button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 8px 12px;
+            background: none;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--charcoal);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .city-quick-nav-dropdown button:hover { background: var(--off-white); color: var(--deep-red); }
+        .city-quick-nav-dropdown button.active-city { font-weight: 700; color: var(--deep-red); }
+
+        /* ===== CITY HERO ILLUSTRATION ===== */
+        .city-hero-illustration {
+            width: 100%;
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .city-hero-illustration svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ===== EXPLORATION BADGES ===== */
+        .badges-section {
+            margin-bottom: 32px;
+            background: var(--off-white);
+            border-radius: 16px;
+            padding: 28px 20px;
+            border: 1px solid rgba(61,43,31,0.05);
+        }
+        .badges-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--dark-brown);
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .badges-section-subtitle {
+            font-size: 12px;
+            color: var(--dark-brown);
+            opacity: 0.45;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .badges-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            justify-content: center;
+        }
+        .badge {
+            width: 105px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.25s ease, filter 0.25s ease;
+        }
+        .badge:hover { transform: translateY(-4px) scale(1.05); }
+        .badge:active { transform: scale(0.95); }
+        .badge-icon {
+            width: 84px;
+            height: 84px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            border: 3px dashed rgba(61,43,31,0.15);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: visible;
+        }
+        .badge-icon svg {
+            width: 38px;
+            height: 38px;
+            opacity: 0.25;
+            transition: all 0.4s;
+            filter: grayscale(1);
+        }
+
+        /* Each badge gets its own color */
+        .badge[data-color="red"] .badge-icon { --badge-bg: linear-gradient(135deg, #FFE8EA, #FFD0D4); --badge-border: #E8485C; --badge-glow: rgba(232,72,92,0.35); }
+        .badge[data-color="orange"] .badge-icon { --badge-bg: linear-gradient(135deg, #FFF0E0, #FFE0C0); --badge-border: #E8842A; --badge-glow: rgba(232,132,42,0.35); }
+        .badge[data-color="blue"] .badge-icon { --badge-bg: linear-gradient(135deg, #E4F0FF, #CCE0FF); --badge-border: #4A90D9; --badge-glow: rgba(74,144,217,0.35); }
+        .badge[data-color="purple"] .badge-icon { --badge-bg: linear-gradient(135deg, #F2E8FF, #E4D0FF); --badge-border: #9B59B6; --badge-glow: rgba(155,89,182,0.35); }
+        .badge[data-color="green"] .badge-icon { --badge-bg: linear-gradient(135deg, #E4F8E8, #C8F0D0); --badge-border: #4CAF50; --badge-glow: rgba(76,175,80,0.35); }
+        .badge[data-color="teal"] .badge-icon { --badge-bg: linear-gradient(135deg, #E0F5F4, #C0EBE8); --badge-border: #26A69A; --badge-glow: rgba(38,166,154,0.35); }
+
+        .badge.claimed .badge-icon {
+            border-style: solid;
+            border-color: var(--badge-border);
+            background: var(--badge-bg);
+            box-shadow: 0 4px 20px var(--badge-glow), 0 0 0 4px rgba(255,255,255,0.8);
+            animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .badge.claimed .badge-icon svg {
+            opacity: 1;
+            filter: none;
+            transform: scale(1.1);
+        }
+        .badge.claimed .badge-icon::after {
+            content: '\2713';
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 22px;
+            height: 22px;
+            background: var(--badge-border);
+            color: white;
+            font-size: 12px;
+            font-weight: 800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        /* Sparkle effect on claim */
+        .badge.claimed .badge-icon::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                transparent,
+                var(--badge-glow),
+                transparent,
+                var(--badge-glow),
+                transparent
+            );
+            animation: badgeSpin 3s linear infinite;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        @keyframes badgePop {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes badgeSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .badge-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--dark-brown);
+            opacity: 0.45;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+            transition: all 0.3s;
+        }
+        .badge.claimed .badge-label {
+            opacity: 1;
+            color: var(--charcoal);
+            font-weight: 800;
+        }
+        .badge[data-color="red"].claimed .badge-label { color: #E8485C; }
+        .badge[data-color="orange"].claimed .badge-label { color: #CF7525; }
+        .badge[data-color="blue"].claimed .badge-label { color: #4A90D9; }
+        .badge[data-color="purple"].claimed .badge-label { color: #9B59B6; }
+        .badge[data-color="green"].claimed .badge-label { color: #4CAF50; }
+        .badge[data-color="teal"].claimed .badge-label { color: #26A69A; }
+        .badge-tap {
+            font-size: 9px;
+            color: var(--dark-brown);
+            opacity: 0.3;
+            margin-top: 3px;
+            transition: opacity 0.3s;
+        }
+        .badge.claimed .badge-tap { display: none; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--dark-brown);
+            color: var(--cream);
+        }
+        .footer p { font-size: 13px; opacity: 0.5; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .city-detail { padding: 20px 16px 60px; }
+            .card { padding: 22px 18px; }
+            .city-hero-illustration { height: 220px; }
+            .badge { width: 90px; }
+            .badge-icon { width: 72px; height: 72px; }
+            .badge-icon svg { width: 36px; height: 36px; }
+            .city-bottom-nav { flex-direction: column; gap: 12px; }
+            .dir-grid { grid-template-columns: 1fr; }
+            .nav-title { display: none; }
+        }
+
+        @media print {
+            .city-page-nav { display: none; }
+            .page { display: block !important; page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- All pages rendered, JS toggles visibility -->
+
+<!-- ===== COVER PAGE ===== -->
+<div class="page active" id="page-cover">
+    <section class="cover">
+        <div class="passport-book" onclick="showPage('page-directory')">
+            <div class="passport-crest">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Stylized gate/paifang icon -->
+                    <rect x="4" y="28" width="4" height="10" rx="0.5" fill="#D4AF61"/>
+                    <rect x="32" y="28" width="4" height="10" rx="0.5" fill="#D4AF61"/>
+                    <rect x="14" y="30" width="4" height="8" rx="0.5" fill="#D4AF61" opacity="0.7"/>
+                    <rect x="22" y="30" width="4" height="8" rx="0.5" fill="#D4AF61" opacity="0.7"/>
+                    <rect x="2" y="25" width="36" height="4" rx="1" fill="#D4AF61"/>
+                    <path d="M6 25 L6 18 Q20 10 34 18 L34 25" fill="none" stroke="#D4AF61" stroke-width="1.5"/>
+                    <path d="M10 25 L10 20 Q20 14 30 20 L30 25" fill="none" stroke="#D4AF61" stroke-width="1" opacity="0.6"/>
+                    <rect x="2" y="16" width="36" height="2.5" rx="0.75" fill="#D4AF61" opacity="0.8"/>
+                    <!-- Roof accent -->
+                    <path d="M0 17 Q20 6 40 17" fill="none" stroke="#D4AF61" stroke-width="1.5"/>
+                    <circle cx="20" cy="10" r="1.5" fill="#D4AF61" opacity="0.5"/>
+                </svg>
+            </div>
+            <h1>Chinatown</h1>
+            <h2>Passport</h2>
+            <div class="passport-chinese">唐人街护照</div>
+            <div class="passport-divider"></div>
+            <div class="passport-label">North America Directory</div>
+        </div>
+        <p class="cover-subtitle">
+            A guide to Chinatowns across North America&mdash;their history, strengths, challenges, and the organizations working to preserve them.
+        </p>
+        <button class="cover-enter" onclick="showPage('page-directory')">
+            Explore &rarr;
+        </button>
+    </section>
+</div>
+
+<!-- ===== DIRECTORY PAGE ===== -->
+<div class="page" id="page-directory">
+    <section class="directory">
+        <div class="dir-header">
+            <div class="dir-header-crest" onclick="showPage('page-cover')" style="cursor:pointer;">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+                    <rect x="4" y="28" width="4" height="10" rx="0.5" fill="#B22234"/>
+                    <rect x="32" y="28" width="4" height="10" rx="0.5" fill="#B22234"/>
+                    <rect x="14" y="30" width="4" height="8" rx="0.5" fill="#B22234" opacity="0.7"/>
+                    <rect x="22" y="30" width="4" height="8" rx="0.5" fill="#B22234" opacity="0.7"/>
+                    <rect x="2" y="25" width="36" height="4" rx="1" fill="#B22234"/>
+                    <path d="M6 25 L6 18 Q20 10 34 18 L34 25" fill="none" stroke="#B22234" stroke-width="1.5"/>
+                    <path d="M10 25 L10 20 Q20 14 30 20 L30 25" fill="none" stroke="#B22234" stroke-width="1" opacity="0.6"/>
+                    <rect x="2" y="16" width="36" height="2.5" rx="0.75" fill="#B22234" opacity="0.8"/>
+                    <path d="M0 17 Q20 6 40 17" fill="none" stroke="#B22234" stroke-width="1.5"/>
+                    <circle cx="20" cy="10" r="1.5" fill="#B22234" opacity="0.5"/>
+                </svg>
+            </div>
+            <h2>Chinatown Passport</h2>
+        </div>
+        <div class="dir-grid" id="dir-grid">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-logo">Chinatown Solidarity Summit 2026</div>
+        <p>Connecting Chinatowns across North America</p>
+    </footer>
+</div>
+
+<!-- City pages will be generated by JS -->
+<div id="city-pages-container"></div>
+
+<script>
+// ===== CITY DATA (Alphabetical) =====
+const cities = [
+  {
+    id: "boston",
+    name: "Boston",
+    chinese: "波士顿唐人街",
+    location: "Massachusetts, USA",
+    hero: "assets/boston_1.png",
+    gallery: ["assets/boston_1.png","assets/boston_2.png"],
+    facts: [
+      { value: "c. 1870", label: "Established" },
+      { value: "137 acres", label: "Zoning Boundary" },
+      { value: "70%", label: "Asian (Castle Sq.)" },
+      { value: "Only in NE", label: "Surviving Chinatown" }
+    ],
+    about: `Boston's Chinatown dates to around 1870, when Chinese workers were brought from the West Coast to break up a shoe factory strike in North Adams, MA. Around 1875, Chinese workers began settling near the train station along Harrison Avenue. Today, the neighborhood covers approximately 137 acres (55 hectares) and extends into the broader "Defining Chinatown" area that includes connections to Malden and Quincy. Castle Square Housing, adjacent to Chinatown, is 70% Asian. It is the only surviving Chinatown in New England. The neighborhood boundaries are defined by the 2020 Chinatown Master Plan, a community-written document to preserve Chinatown as an anchor community.`,
+    strengths: [
+      "<strong>Chinatown Community Land Trust:</strong> Innovative model with 4 properties, 7 condos (50\u201380% AMI), and 6 rentals (30\u201380% AMI) to preserve affordable housing",
+      "Community-written 2020 Chinatown Master Plan guiding preservation and development",
+      "Expanding Chinatown identity to include Malden and Quincy communities",
+      "Strong model of community land trust that other Chinatowns can learn from"
+    ],
+    challenges: [
+      "<strong>Anti-Displacement:</strong> Fighting displacement of tenants and small businesses as land values rise",
+      "<strong>Community Connections:</strong> Building stronger connections between Boston Chinatown and other Chinese communities in the region",
+      "<strong>Coalition Building:</strong> Building coalition and partnership within Chinatown\u2019s stakeholders to advance common goals"
+    ],
+    orgs: [
+      { name: "Chinatown Community Land Trust", desc: "Preserving affordable housing through community ownership \u2014 Speaker: Lawrence K Cheng, Co-Chair" }
+    ]
+  },
+  {
+    id: "calgary",
+    name: "Calgary",
+    chinese: "卡尔加里唐人街",
+    location: "Alberta, Canada",
+    hero: "assets/calgary_1.png",
+    gallery: ["assets/calgary_1.png","assets/calgary_2.png","assets/calgary_3.png"],
+    facts: [
+      { value: "1885", label: "First Chinatown" },
+      { value: "3", label: "Chinatowns Total" },
+      { value: "1910", label: "Current Location" },
+      { value: "Temple of Heaven", label: "Cultural Centre" }
+    ],
+    about: `Calgary has had three distinct Chinatowns. The first (1885\u20131901) and second (1901\u20131909) were displaced by urban development. The current and third Chinatown (1910\u2013present) is located along Centre Street and 3rd Avenue downtown. Chinese workers originally came to build the Canadian Pacific Railway. The Chinese Cultural Centre, modeled after the Temple of Heaven in Beijing, opened in 1992 and is a prominent landmark.`,
+    strengths: [
+      "Chinese Cultural Centre is a major architectural and cultural landmark, modeled after the Temple of Heaven",
+      "Active revitalization and development plans for the neighborhood",
+      "Resilient community that has rebuilt three times throughout history",
+      "Downtown location provides high visibility and accessibility"
+    ],
+    challenges: [
+      "History of displacement\u2014community has been forced to relocate twice",
+      "Development pressure from surrounding downtown growth threatening neighborhood character",
+      "Balancing modernization with cultural heritage preservation",
+      "Declining foot traffic and business viability in the commercial core"
+    ],
+    orgs: [
+      { name: "Calgary Chinese Cultural Centre", desc: "Cultural programming, community events, and heritage preservation" }
+    ]
+  },
+  {
+    id: "chicago",
+    name: "Chicago",
+    chinese: "芝加哥唐人街",
+    location: "Illinois, USA",
+    hero: "assets/chicago_2.png",
+    gallery: ["assets/chicago_1.png","assets/chicago_2.png","assets/chicago_3.png"],
+    facts: [
+      { value: "1912", label: "Founded" },
+      { value: "Only Growing", label: "Chinatown in U.S." },
+      { value: "Armour Sq.", label: "Neighborhood" },
+      { value: "100,000+", label: "Chinese in Metro" }
+    ],
+    about: `Chicago's Chinatown was founded in 1912 in the Armour Square neighborhood, though the original Chinatown started in the 1870s at Clark and Van Buren in downtown Chicago. The Moy Brothers are credited with leading the move to the current location, which was then an Italian neighborhood. Chicago's Chinatown is often touted as the "only growing Chinatown in the U.S.," a testament to its community resilience and continued development.`,
+    strengths: [
+      "Recognized as the only growing Chinatown in the United States, demonstrating community vitality",
+      "Strong anchor institutions like the Coalition for a Better Chinese American Community (CBCAC)",
+      "Active small business and restaurant scene, including establishments like Triple Crown Restaurant",
+      "Continued population growth and new development in the area"
+    ],
+    challenges: [
+      "<strong>Rising Costs:</strong> Rent and property taxes are increasing, putting pressure on small, independent businesses",
+      "<strong>Franchise Encroachment:</strong> More franchises are moving in as small, independent businesses close",
+      "<strong>Safety & Infrastructure:</strong> Community survey identified safety, older infrastructure, and access to health care as top concerns",
+      "<strong>Funding Environment:</strong> Challenging U.S. funding climate makes it difficult to sustain critical health care and social services"
+    ],
+    orgs: [
+      { name: "Coalition for a Better Chinese American Community (CBCAC)", desc: "Social services, advocacy, and community development \u2014 Speaker: Grace Chan McKibben" },
+      { name: "Triple Crown Restaurant", desc: "Local business and community gathering place \u2014 Speaker: Spencer Ng" }
+    ]
+  },
+  {
+    id: "denver",
+    name: "Denver",
+    chinese: "丹佛唐人街",
+    location: "Colorado, USA",
+    hero: "assets/denver_1.png",
+    gallery: ["assets/denver_1.png","assets/denver_2.png","assets/denver_3.png"],
+    facts: [
+      { value: "Late 1800s", label: "Original Era" },
+      { value: "1880", label: "Race Riot" },
+      { value: "Destroyed", label: "Current Status" },
+      { value: "Reclaiming", label: "Movement" }
+    ],
+    about: `In the late 1800s, Denver had the largest Chinatown in the interior West, built after the completion of the Transcontinental Railroad. However, following the Anti-Chinese Race Riot of 1880, racist federal legislation, and a xenophobic society, Denver's Chinatown was destroyed and disappeared. Today, there is no clear evidence of its existence. The story of Denver's Chinatown is one of erasure\u2014but also of reclamation, as modern organizations work to recover and honor this lost history.`,
+    strengths: [
+      "Active movement to reclaim and honor Denver's erased Chinatown history",
+      "Colorado Asian Pacific United (CAPU) leading cultural reclamation and community building",
+      "Growing public awareness and interest in the lost history of Denver's Chinatown",
+      "Murals, exhibitions, and educational programming bringing the history back to life"
+    ],
+    challenges: [
+      "Complete physical erasure\u2014no physical traces of the original Chinatown remain",
+      "Historical trauma from the 1880 Anti-Chinese Race Riot and decades of systemic racism",
+      "Building community identity without a physical neighborhood anchor",
+      "Ensuring the reclamation movement sustains momentum and institutional support"
+    ],
+    orgs: [
+      { name: "Colorado Asian Pacific United (CAPU)", desc: "Leading the effort to reclaim Denver's Chinatown history through arts, advocacy, and education" }
+    ]
+  },
+  {
+    id: "edmonton",
+    name: "Edmonton",
+    chinese: "埃德蒙顿唐人街",
+    location: "Alberta, Canada",
+    hero: "assets/edmonton_1.png",
+    gallery: ["assets/edmonton_1.png","assets/edmonton_2.png","assets/edmonton_3.png","assets/edmonton_4.png"],
+    facts: [
+      { value: "1890", label: "First Chinese" },
+      { value: "3", label: "Chinatowns Total" },
+      { value: "135+ yrs", label: "Of History" },
+      { value: "2017", label: "Gate Removed" }
+    ],
+    about: `Edmonton's Chinese history began in May 1890, when Chung Gee arrived from Calgary to open the city's first Chinese business: a laundry. This evolved into three distinct Chinatowns. The Old Chinatown (1890\u20131981) was demolished. Chinatown South (the heritage district, late 1970s\u2013present) and Chinatown North (the commercial district, mid-1970s\u2013present) exist today, separated by a defunct CPR railroad bridge. By 1911, a distinct Chinatown had emerged across three city blocks, serving 154 people. The arrival of Hong Kong immigrants and Vietnamese-Chinese "boat people" in the late 1970s helped the North district flourish.`,
+    strengths: [
+      "Over 135 years of Chinese history, one of the oldest Chinese communities in western Canada",
+      "Building a unified advocacy network with other North American Chinatowns through the Summit",
+      "Seeking economic knowledge exchange and proven \u201cChinatown Strategy\u201d models from other cities",
+      "Community looking for a new narrative\u2014\u201cnot just recovery, but new beginnings\u201d"
+    ],
+    challenges: [
+      "<strong>Safety and Security:</strong> High rates of crime and social vulnerability, especially after dark. Disproportionate concentration of social agencies and supervised consumption sites discourages foot traffic",
+      "<strong>Street Cleanliness:</strong> Litter and social disorder detract from cultural beauty, discouraging tourism and new investment",
+      "<strong>Business Viability:</strong> High security costs force legacy businesses out; new arrivals often lack cultural alignment",
+      "<strong>Gate Removal:</strong> The Harbin Gate was removed in 2017, a significant loss for community identity"
+    ],
+    orgs: [
+      { name: "Edmonton Chinatown Community Representatives", desc: "Working on advocacy, economic revitalization, and building a new narrative for the community" }
+    ]
+  },
+  {
+    id: "honolulu",
+    name: "Honolulu",
+    chinese: "檀香山唐人街",
+    location: "Hawaii, USA",
+    hero: "assets/honolulu_1.png",
+    gallery: ["assets/honolulu_1.png","assets/honolulu_2.png","assets/honolulu_3.png","assets/honolulu_5.png","assets/honolulu_6.png"],
+    facts: [
+      { value: "1850s", label: "Established" },
+      { value: "National", label: "Historic Register" },
+      { value: "3 Precincts", label: "Historic Districts" },
+      { value: "4 Pillars", label: "Action Plan" }
+    ],
+    about: `Honolulu's Chinatown is one of the oldest in the United States, with Chinese merchants establishing businesses as early as the 1850s. The district is listed on the National Register of Historic Places as the Chinatown Historic District. It encompasses three precincts\u2014Historic Core, Maunakea, and Bethel\u2014which reflect the historic city plan. The neighborhood has served as a multicultural hub, blending Chinese, Japanese, Filipino, and Native Hawaiian influences. Sun Yat-sen, founder of the Republic of China, spent part of his youth in Honolulu and had ties to the community.`,
+    strengths: [
+      "<strong>Chinatown Action Plan</strong> with four pillars: Streets as Places, Cleaner & Safer Chinatown, A Vibrant Economy, and Park Improvements",
+      "New gateway arch (paifang) designed and under development as a cultural landmark",
+      "National Register of Historic Places designation provides heritage framework",
+      "Walking tours and community engagement activating the neighborhood"
+    ],
+    challenges: [
+      "Public safety and street cleanliness concerns",
+      "Need for economic revitalization and support for small businesses",
+      "Balancing historic preservation with community needs",
+      "Park improvements and public space maintenance"
+    ],
+    orgs: [
+      { name: "Honolulu Chinatown Action Plan Committee", desc: "Leading the four-pillar revitalization strategy for Chinatown" }
+    ]
+  },
+  {
+    id: "houston",
+    name: "Houston",
+    chinese: "休斯顿唐人街",
+    location: "Texas, USA",
+    hero: "assets/houston_1.png",
+    gallery: ["assets/houston_1.png","assets/houston_2.png","assets/houston_3.png","assets/houston_4.png"],
+    facts: [
+      { value: "3 Districts", label: "Old, New & Little Saigon" },
+      { value: "Bellaire Blvd.", label: "New Chinatown" },
+      { value: "Suburban", label: "Format" },
+      { value: "Fast-Growing", label: "Asian Community" }
+    ],
+    about: `Houston's Chinese community spans three distinct areas. The Old Chinatown was located near downtown. New Chinatown emerged along Bellaire Boulevard in the 1980s\u201390s, becoming one of the largest Asian commercial corridors in the American South, characterized by large strip malls and shopping centers like Dun Huang Plaza and Diho Square. Houston is also home to a significant Little Saigon district. Houston's Chinatown is notable for being a suburban, car-oriented Chinatown rather than a traditional dense urban neighborhood.`,
+    strengths: [
+      "One of the fastest-growing Asian American communities in the U.S.",
+      "New Chinatown along Bellaire Blvd. is a thriving commercial corridor with major shopping centers",
+      "Diverse pan-Asian community spanning Chinese, Vietnamese, and other cultures",
+      "Goal to put Chinatown as a key part of Houston\u2019s map and identity"
+    ],
+    challenges: [
+      "<strong>Public Safety Concerns:</strong> Safety remains a top issue, with a dedicated Safety & Business Symposium held to address it",
+      "<strong>Economic Sustainability:</strong> Ensuring long-term viability of businesses in a sprawling, car-dependent metro",
+      "<strong>Traffic and Limited Public Transportation:</strong> Lack of transit options makes it difficult to connect the community and attract visitors"
+    ],
+    orgs: [
+      { name: "Houston Chinatown Community Organizations", desc: "Various groups working on safety, economic development, and cultural preservation" }
+    ]
+  },
+  {
+    id: "los-angeles",
+    name: "Los Angeles",
+    chinese: "洛杉矶唐人街",
+    location: "California, USA",
+    hero: "assets/los_angeles_1.png",
+    gallery: ["assets/los_angeles_1.png"],
+    facts: [
+      { value: "1938", label: "New Chinatown" },
+      { value: "1st", label: "Chinese-Owned CT" },
+      { value: "1871", label: "Chinese Massacre" },
+      { value: "Broadway", label: "Main Street" }
+    ],
+    about: `Los Angeles' Chinatown is the "New Chinatown," established in 1938 after the original Old Chinatown was demolished to build Union Station. It was the first Chinatown in the U.S. to be built and owned by Chinese Americans. The neighborhood centers around Broadway and North Hill Street, marked by its colorful East Gate. The area of Old Chinatown was also the site of the 1871 Chinese Massacre, in which 17\u201319 Chinese men and boys were killed by a mob. LA's Chinatown today is home to a mix of traditional Chinese businesses, art galleries, and a growing creative scene.`,
+    strengths: [
+      "Historic distinction as the first Chinese-American-owned Chinatown in the U.S.",
+      "Growing arts and creative scene alongside traditional businesses",
+      "Metro Gold Line connection improving accessibility",
+      "Proximity to major cultural institutions and downtown LA"
+    ],
+    challenges: [
+      "Rapid gentrification driven by luxury development and arts district spillover",
+      "Displacement of longtime residents and immigrant communities",
+      "Loss of affordable housing to market-rate developments",
+      "Preserving Chinese cultural identity as neighborhood demographics shift"
+    ],
+    orgs: [
+      { name: "Chinatown Community for Equitable Development (CCED)", desc: "Fighting displacement and advocating for affordable housing and community control" }
+    ]
+  },
+  {
+    id: "manhattan",
+    name: "Manhattan",
+    chinese: "曼哈顿唐人街",
+    location: "New York, USA",
+    hero: "assets/manhattan_1.png",
+    gallery: ["assets/manhattan_1.png"],
+    facts: [
+      { value: "1870s", label: "Established" },
+      { value: "~90,000", label: "Chinese Population" },
+      { value: "Largest", label: "Outside Asia" },
+      { value: "150+ yrs", label: "Of History" }
+    ],
+    about: `Manhattan's Chinatown is one of the oldest and largest Chinese enclaves in the Western Hemisphere. Established in the 1870s, it grew from a small area on Mott, Pell, and Doyers Streets into a sprawling neighborhood below Canal Street. It expanded significantly after the 1965 Immigration Act ended national-origin quotas. The neighborhood was heavily impacted by the September 11 attacks due to its proximity to the World Trade Center. It remains one of the most vibrant and culturally authentic Chinatowns in the world.`,
+    strengths: [
+      "One of the largest and most vibrant Chinatowns in the world with unmatched cultural density",
+      "Major Lunar New Year celebrations and cultural events, including the Lunar New Year Lantern Artist Residency",
+      "Strong grassroots organizations and community activism",
+      "Global recognition as a cultural destination"
+    ],
+    challenges: [
+      "Severe gentrification pressure from surrounding luxury development",
+      "Displacement of residents and small businesses due to rising rents",
+      "Long-lasting economic impacts from 9/11 and the COVID-19 pandemic",
+      "Rezoning and development threats to neighborhood character"
+    ],
+    orgs: [
+      { name: "Think!Chinatown", desc: "Neighborhood engagement, storytelling, and cultural programming to support Manhattan\u2019s Chinatown" }
+    ]
+  },
+  {
+    id: "montreal",
+    name: "Montreal",
+    chinese: "蒙特利尔唐人街",
+    location: "Quebec, Canada",
+    hero: "assets/montreal_1.png",
+    gallery: ["assets/montreal_1.png"],
+    facts: [
+      { value: "Late 1800s", label: "Established" },
+      { value: "4 Gates", label: "Paifangs" },
+      { value: "Heritage", label: "Designated Area" },
+      { value: "~2 blocks", label: "Core Size" }
+    ],
+    about: `Montreal's Chinatown (Quartier chinois) is located along de la Gaucheti\u00e8re Street West in the heart of downtown. Established in the late 1800s by Chinese workers who came to build the Canadian Pacific Railway, it is one of the oldest Chinatowns in eastern Canada. The neighborhood is marked by four ornamental gates (paifangs) at its entrances and has been designated a heritage area by the city. It was significantly reduced by the construction of the Complexe Guy-Favreau and the Palais des congr\u00e8s in the 1970s\u201380s. Despite its small footprint, it remains culturally vibrant.`,
+    strengths: [
+      "Heritage designation provides protections for the neighborhood\u2019s character",
+      "Four ornamental gates create a strong sense of place and cultural identity",
+      "Central downtown location with high foot traffic and transit access",
+      "Diverse Asian culinary and cultural offerings"
+    ],
+    challenges: [
+      "Very small geographic footprint makes the community vulnerable to any development encroachment",
+      "Real estate development pressure from surrounding downtown growth",
+      "Maintaining Chinese cultural identity in a predominantly francophone city",
+      "Balancing heritage preservation with economic revitalization"
+    ],
+    orgs: [
+      { name: "Montreal Chinatown Community Organizations", desc: "Heritage preservation, cultural programming, and advocacy for the Quartier chinois" }
+    ]
+  },
+  {
+    id: "oakland",
+    name: "Oakland",
+    chinese: "奥克兰唐人街",
+    location: "California, USA",
+    hero: "assets/oakland_1.png",
+    gallery: ["assets/oakland_1.png","assets/oakland_2.png","assets/oakland_3.png","assets/oakland_4.png","assets/oakland_5.png"],
+    facts: [
+      { value: "1850s", label: "Established" },
+      { value: "170+ yrs", label: "Of History" },
+      { value: "Pan-Asian", label: "Community" },
+      { value: "6\u20138 blocks", label: "Core Area" }
+    ],
+    about: `Oakland's Chinatown dates back to the 1850s, making it one of the oldest in North America. The community grew through the late 1800s, survived the 1906 San Francisco earthquake (which brought an influx of displaced Chinese residents), endured the Japanese internment era of 1942, and was reshaped by urban renewal in 1943. Today it continues to be an important commercial and community space for Oakland\u2019s pan-Asian residents. The neighborhood hosts vibrant outdoor festivals including StreetFest, Obon Festival, Lunar New Year Parade, and Lincoln Summer Nights.`,
+    strengths: [
+      "Vibrant outdoor festival culture: StreetFest, Obon Festival, Lunar New Year Parade, Oakland Chinatown Night Market",
+      "Lincoln Summer Nights community programming with music, sports, dancing, performances, and games",
+      "New Lincoln Square Rec Center as a community gathering space",
+      "Strong tai chi and community wellness culture in public spaces"
+    ],
+    challenges: [
+      "<strong>Gentrification:</strong> The community is facing serious pressure of displacement as a result of gentrification",
+      "<strong>Pandemic Impact:</strong> COVID-19 caused severe social and economic damage to the neighborhood",
+      "Public safety concerns, particularly targeting elderly Asian residents",
+      "Preserving affordability for longtime residents and small businesses"
+    ],
+    orgs: [
+      { name: "Oakland Chinatown Chamber of Commerce", desc: "Organizer of StreetFest and business advocacy" },
+      { name: "Oakland Chinatown Improvement Council", desc: "Organizer of Lunar New Year Parade & Chinatown Night Market" },
+      { name: "Buddhist Church of Oakland", desc: "Host of the annual Obon Festival" }
+    ]
+  },
+  {
+    id: "ottawa",
+    name: "Ottawa",
+    chinese: "渥太华唐人街",
+    location: "Ontario, Canada",
+    hero: "assets/ottawa_3.png",
+    gallery: ["assets/ottawa_1.png","assets/ottawa_2.png","assets/ottawa_3.png"],
+    facts: [
+      { value: "1960s", label: "Current Location" },
+      { value: "Somerset St.", label: "Main Street" },
+      { value: "Capital City", label: "Status" },
+      { value: "2010", label: "Paifang Gate" }
+    ],
+    about: `Ottawa's Chinatown is centered along Somerset Street West between Bronson and Preston Avenues. While smaller than Chinatowns in Vancouver or Toronto, it serves as a vibrant cultural corridor in Canada's capital city. The original Chinatown was along Albert Street but was displaced by federal building construction. The current location features a traditional paifang gate and is home to a diverse mix of Chinese, Vietnamese, and other Asian businesses.`,
+    strengths: [
+      "Located in Canada\u2019s national capital, providing access to federal policy conversations",
+      "Iconic Chinese arch serves as a cultural landmark and community anchor",
+      "Diverse Asian business ecosystem spanning Chinese, Vietnamese, and other cultures",
+      "Active cultural events including lion dances and Lunar New Year celebrations"
+    ],
+    challenges: [
+      "<strong>Safety and Social Disorder:</strong> Crime and open drug use have impacted the neighborhood\u2019s reputation and foot traffic",
+      "<strong>Generational Transition and Community Outflow:</strong> Younger generations moving to suburbs, leaving fewer community members to sustain the area",
+      "<strong>Lack of Sustained Institutional Support:</strong> Insufficient long-term government or institutional investment in the neighborhood"
+    ],
+    orgs: [
+      { name: "Chinatown Solidarity", desc: "Advocacy group working to address safety, community outflow, and revitalization" }
+    ]
+  },
+  {
+    id: "philadelphia",
+    name: "Philadelphia",
+    chinese: "费城唐人街",
+    location: "Pennsylvania, USA",
+    hero: "assets/philadelphia_1.png",
+    gallery: ["assets/philadelphia_1.png"],
+    facts: [
+      { value: "1870s", label: "Established" },
+      { value: "10th & Race", label: "Center" },
+      { value: "1984", label: "Friendship Gate" },
+      { value: "Only in PA", label: "Surviving Chinatown" }
+    ],
+    about: `Philadelphia's Chinatown was established in the 1870s and is centered around 10th and Race Streets. It is the only Chinatown remaining in Pennsylvania. The Chinese Friendship Gate (Paifang), built in 1984 through a partnership between Philadelphia and its sister city Tianjin, China, is a beloved landmark. The community has a remarkable history of activism, having successfully fought off a highway, stadium, and casino proposals that would have destroyed the neighborhood. The Vine Street Expressway, built in the 1980s\u201390s, did bisect the community.`,
+    strengths: [
+      "Extraordinary history of successful community resistance against demolition and displacement threats",
+      "Strong student and youth activist community",
+      "The Chinese Friendship Gate is a beloved cultural landmark",
+      "Vibrant restaurant and cultural scene drawing visitors from across the region"
+    ],
+    challenges: [
+      "Ongoing development pressure from surrounding neighborhoods (Convention Center, downtown growth)",
+      "Rising commercial rents threatening family-owned businesses",
+      "Recurring infrastructure proposals that would fragment the neighborhood",
+      "Need for sustained institutional support to maintain cultural identity"
+    ],
+    orgs: [
+      { name: "Philadelphia Chinatown Development Corporation (PCDC)", desc: "Community development, advocacy, and anti-displacement work" }
+    ]
+  },
+  {
+    id: "san-francisco",
+    name: "San Francisco",
+    chinese: "旧金山唐人街",
+    location: "California, USA",
+    hero: "assets/san_francisco_1.png",
+    gallery: ["assets/san_francisco_1.png","assets/san_francisco_2.png"],
+    facts: [
+      { value: "1848", label: "Established" },
+      { value: "Oldest", label: "In North America" },
+      { value: "24 blocks", label: "Neighborhood Size" },
+      { value: "15,000+", label: "Residents" }
+    ],
+    about: `San Francisco's Chinatown is the oldest in North America, established in 1848 during the California Gold Rush. It is the most densely populated urban area west of Manhattan. Largely destroyed in the 1906 earthquake and fire, it was rebuilt in a distinctive architectural style. Located on Grant Avenue and Stockton Street, it attracts more visitors annually than the Golden Gate Bridge. It has served as a cultural and political hub for Chinese Americans for over 170 years.`,
+    strengths: [
+      "The oldest and one of the most iconic Chinatowns in the world, with deep historical significance",
+      "Major tourism destination, drawing millions of visitors annually",
+      "Robust network of cultural institutions including the Chinese Historical Society of America and Chinese Culture Center",
+      "Strong community advocacy and a history of political engagement"
+    ],
+    challenges: [
+      "Gentrification and displacement of longtime residents and family-owned businesses",
+      "Public safety concerns, particularly for elderly residents",
+      "Aging infrastructure and housing stock in need of modernization",
+      "Post-pandemic economic recovery for small businesses"
+    ],
+    orgs: [
+      { name: "Chinese Historical Society of America (CHSA)", desc: "Preserving and promoting the history of Chinese Americans \u2014 Speaker: David Lei" },
+      { name: "Chinese Culture Center", desc: "Arts and cultural programming rooted in community \u2014 Speaker: Jenny Leung" },
+      { name: "Dear Community", desc: "Community-focused storytelling and engagement \u2014 Speaker: Amy Lee" }
+    ]
+  },
+  {
+    id: "toronto",
+    name: "Toronto",
+    chinese: "多伦多唐人街",
+    location: "Ontario, Canada",
+    hero: "assets/toronto_1.png",
+    gallery: ["assets/toronto_1.png"],
+    facts: [
+      { value: "Early 1900s", label: "Originally Est." },
+      { value: "Spadina Ave.", label: "Main Corridor" },
+      { value: "700,000+", label: "Chinese in GTA" },
+      { value: "Multiple", label: "Chinatowns" }
+    ],
+    about: `Toronto's Chinatown along Spadina Avenue and Dundas Street West is one of the largest in North America. The original Chinatown near Dundas and Elizabeth Streets was largely displaced by the construction of the new City Hall in the 1950s\u201360s. The community relocated westward to Spadina. Toronto has multiple Chinatowns across the metro area, but Spadina remains the cultural heart. The Greater Toronto Area is home to over 700,000 residents of Chinese descent, one of the largest Chinese populations outside of Asia.`,
+    strengths: [
+      "One of the largest Chinese communities in North America with deep cultural roots",
+      "Vibrant commercial corridor with hundreds of restaurants, shops, and markets",
+      "Multiple Chinatowns across the GTA reflecting community growth",
+      "Strong Lunar New Year and cultural festival presence"
+    ],
+    challenges: [
+      "Gentrification and condo development threatening the character of the Spadina corridor",
+      "Loss of longtime family-owned businesses to rising rents",
+      "Aging population in the core Chinatown area",
+      "Balancing tourism appeal with community needs"
+    ],
+    orgs: [
+      { name: "Toronto Chinatown BIA", desc: "Business Improvement Area supporting local merchants and cultural programming" },
+      { name: "Chinese Canadian National Council \u2013 Toronto Chapter", desc: "Advocacy for Chinese Canadian rights and community services" }
+    ]
+  },
+  {
+    id: "vancouver",
+    name: "Vancouver",
+    chinese: "温哥华唐人街",
+    location: "British Columbia, Canada",
+    hero: "assets/vancouver_1.png",
+    gallery: ["assets/vancouver_1.png","assets/vancouver_2.png","assets/vancouver_3.png"],
+    facts: [
+      { value: "1880s", label: "Established" },
+      { value: "~6 blocks", label: "Core Area" },
+      { value: "National", label: "Historic Site" },
+      { value: "532,000+", label: "Chinese in Metro" }
+    ],
+    about: `Vancouver's Chinatown is one of the largest in North America and a National Historic Site of Canada. Established in the 1880s by Chinese immigrants who came to work on the Canadian Pacific Railway, it became a vital community hub despite decades of discrimination, including the Chinese Exclusion Act (1923\u20131947). The neighborhood is home to the iconic Millennium Gate, the Dr. Sun Yat-Sen Classical Chinese Garden (the first full-scale classical Chinese garden built outside of China), and the Chinese Cultural Centre.`,
+    strengths: [
+      "Home to the Dr. Sun Yat-Sen Classical Chinese Garden, a world-renowned cultural landmark",
+      "Strong cultural organizations and advocacy networks, including the Vancouver Chinatown Foundation",
+      "National Historic Site designation provides heritage protection framework",
+      "Growing public awareness and support for Chinatown revitalization efforts"
+    ],
+    challenges: [
+      "<strong>Anti-Asian Hate:</strong> Rising incidents of anti-Asian racism and hate crimes",
+      "<strong>Affordability & Economic Strain:</strong> Rapid gentrification, rising property values, and displacement of longtime residents and businesses",
+      "<strong>Downtown Eastside:</strong> Proximity to the Downtown Eastside creates overlapping issues of public safety and social disorder"
+    ],
+    orgs: [
+      { name: "Vancouver Chinatown Foundation", desc: "Community-based organization supporting cultural, social, and economic development" },
+      { name: "Chinese Cultural Centre", desc: "Promotes Chinese-Canadian heritage through programs, exhibitions, and community events" }
+    ]
+  },
+  {
+    id: "victoria",
+    name: "Victoria",
+    chinese: "维多利亚唐人街",
+    location: "British Columbia, Canada",
+    hero: "assets/victoria_1.png",
+    gallery: ["assets/victoria_1.png"],
+    facts: [
+      { value: "1858", label: "Established" },
+      { value: "Oldest", label: "In Canada" },
+      { value: "National", label: "Historic Site" },
+      { value: "Fan Tan Alley", label: "Narrowest St." }
+    ],
+    about: `Victoria's Chinatown is the oldest in Canada and the second oldest in North America after San Francisco's. Established in 1858 during the Fraser Canyon Gold Rush, it once stretched across several blocks of Fisgard Street. The neighborhood features the iconic Gate of Harmonious Interest (built 1981) and Fan Tan Alley, one of the narrowest streets in Canada. Victoria's Chinatown is a National Historic Site of Canada, designated in 1995.`,
+    strengths: [
+      "Oldest Chinatown in Canada with deep historical significance dating to 1858",
+      "National Historic Site designation provides heritage protection",
+      "Fan Tan Alley and the Gate of Harmonious Interest are unique cultural landmarks",
+      "Tourism draw as part of Victoria\u2019s broader heritage district"
+    ],
+    challenges: [
+      "Shrinking residential Chinese community as demographics have shifted",
+      "Gentrification and conversion of heritage buildings to non-Chinese businesses",
+      "Balancing tourism with authentic cultural preservation",
+      "Maintaining cultural identity as the neighborhood evolves"
+    ],
+    orgs: [
+      { name: "Victoria Chinatown Community Organizations", desc: "Heritage preservation, cultural programming, and community advocacy" }
+    ]
+  },
+  {
+    id: "washington-dc",
+    name: "Washington DC",
+    chinese: "华盛顿唐人街",
+    location: "District of Columbia, USA",
+    hero: "assets/washington_dc_1.png",
+    gallery: ["assets/washington_dc_1.png","assets/washington_dc_2.png","assets/washington_dc_3.png","assets/washington_dc_4.png","assets/washington_dc_5.png"],
+    facts: [
+      { value: "1880s", label: "Established" },
+      { value: "H Street NW", label: "Historic Center" },
+      { value: "~300", label: "Chinese Residents" },
+      { value: "1986", label: "Friendship Archway" }
+    ],
+    about: `Washington DC's Chinatown was established in the 1880s along Pennsylvania Avenue, later centering on H Street NW. It once thrived as a vibrant Chinese commercial district, with landmarks like the On Leong Merchants Association (photographed in 1932). The Friendship Archway, built in 1986, is one of the largest Chinese arches in the world. However, DC's Chinatown has experienced perhaps the most dramatic shrinkage of any U.S. Chinatown\u2014from thousands of Chinese residents and businesses to roughly 300 residents today, with major chains and the Capital One Arena dominating the area.`,
+    strengths: [
+      "The Friendship Archway remains one of the largest and most recognizable Chinese arches in the world",
+      "<strong>Save Chinatown Solidarity Network</strong> actively advocating for revitalization",
+      "<strong>Lion\u2019s Path Chinatown Revitalization Initiative</strong> bringing young leaders to the effort",
+      "High visibility location in the nation\u2019s capital"
+    ],
+    challenges: [
+      "Severe gentrification has reduced the Chinese community to a fraction of its historic size",
+      "Chain stores and the Capital One Arena have displaced most Chinese-owned businesses",
+      "Chinatown exists largely in name only, with most cultural markers being symbolic",
+      "Fighting to preserve what remains while rebuilding community presence"
+    ],
+    orgs: [
+      { name: "Save Chinatown Solidarity Network", desc: "Advocacy for preserving and revitalizing DC\u2019s Chinatown" },
+      { name: "Lion\u2019s Path Chinatown Revitalization Initiative", desc: "Youth-led initiative for community engagement and cultural revitalization" }
+    ]
+  }
+];
+
+// ===== PAGE NAVIGATION =====
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const page = document.getElementById(pageId);
+    if (page) {
+        page.classList.add('active');
+        window.scrollTo(0, 0);
+    }
+}
+
+// ===== STATE/PROVINCE SVG ICONS =====
+// Simplified silhouette paths for each state/province
+const stateIcons = {
+    // US States
+    "Massachusetts": `<path d="M8 20 L10 16 L14 15 L18 14 L22 13 L26 14 L30 16 L33 15 L35 17 L33 19 L35 21 L32 23 L30 21 L28 23 L24 22 L20 24 L16 23 L12 24 L8 22 Z" fill="#B22234" opacity="0.7"/><circle cx="32" cy="19" r="2.5" fill="#B22234" opacity="0.5"/>`,
+    "Illinois": `<path d="M16 6 L26 6 L26 8 L28 10 L28 14 L26 18 L27 22 L26 26 L24 30 L22 34 L18 34 L17 30 L16 26 L15 22 L14 18 L15 14 L14 10 L16 8 Z" fill="#B22234" opacity="0.7"/>`,
+    "Colorado": `<rect x="8" y="10" width="24" height="18" rx="1" fill="#B22234" opacity="0.7"/>`,
+    "Hawaii": `<circle cx="12" cy="24" r="3" fill="#B22234" opacity="0.5"/><circle cx="18" cy="22" r="2.5" fill="#B22234" opacity="0.6"/><circle cx="24" cy="19" r="3.5" fill="#B22234" opacity="0.7"/><circle cx="30" cy="16" r="2" fill="#B22234" opacity="0.5"/><ellipse cx="32" cy="14" rx="3" ry="2" fill="#B22234" opacity="0.65"/>`,
+    "Texas": `<path d="M14 8 L26 8 L28 10 L28 16 L32 18 L34 22 L32 28 L28 32 L24 34 L20 32 L16 34 L12 30 L10 26 L8 20 L10 14 L12 10 Z" fill="#B22234" opacity="0.7"/>`,
+    "California": `<path d="M14 6 L18 6 L20 8 L22 10 L24 14 L26 18 L28 22 L30 26 L30 30 L28 34 L24 36 L20 34 L18 30 L16 26 L14 22 L12 18 L10 14 L12 10 Z" fill="#B22234" opacity="0.7"/>`,
+    "New York": `<path d="M8 14 L14 12 L20 10 L26 10 L32 12 L34 14 L32 16 L34 20 L30 22 L28 20 L24 22 L20 20 L16 22 L12 20 L8 18 Z" fill="#B22234" opacity="0.7"/><path d="M30 24 L32 26 L30 28 L28 26 Z" fill="#B22234" opacity="0.5"/>`,
+    "Pennsylvania": `<path d="M6 12 L34 12 L34 14 L36 16 L34 18 L34 26 L6 26 L6 18 Z" fill="#B22234" opacity="0.7"/>`,
+    "District of Columbia": `<path d="M14 10 L26 10 L30 20 L20 32 L10 20 Z" fill="#B22234" opacity="0.7"/><circle cx="20" cy="20" r="5" fill="none" stroke="#B22234" stroke-width="1.5" opacity="0.5"/>`,
+    // Canadian Provinces
+    "Alberta": `<path d="M12 6 L28 6 L28 34 L24 34 L20 32 L16 34 L12 34 Z" fill="#B22234" opacity="0.7"/>`,
+    "Quebec": `<path d="M10 8 L18 6 L26 8 L30 12 L32 18 L30 24 L32 28 L28 32 L22 34 L16 32 L12 28 L10 24 L8 18 L10 14 Z" fill="#B22234" opacity="0.7"/>`,
+    "Ontario": `<path d="M8 10 L16 8 L24 10 L30 14 L34 18 L32 24 L28 28 L22 30 L16 28 L10 24 L8 18 Z" fill="#B22234" opacity="0.7"/>`,
+    "British Columbia": `<path d="M10 6 L20 6 L24 8 L26 12 L28 18 L26 24 L28 28 L24 32 L18 34 L12 32 L8 28 L10 22 L8 16 L10 12 Z" fill="#B22234" opacity="0.7"/>`
+};
+
+function getStateFromLocation(location) {
+    // Extract state/province name from "State, Country" format
+    return location.split(',')[0].trim();
+}
+
+function getStateSVG(location) {
+    const state = getStateFromLocation(location);
+    const iconPath = stateIcons[state] || `<rect x="8" y="8" width="24" height="24" rx="4" fill="#B22234" opacity="0.5"/>`;
+    return `<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">${iconPath}</svg>`;
+}
+
+// ===== BUILD DIRECTORY GRID =====
+function buildDirectory() {
+    const grid = document.getElementById('dir-grid');
+    cities.forEach((city, i) => {
+        const card = document.createElement('div');
+        card.className = 'dir-card';
+        card.onclick = () => showPage('page-city-' + city.id);
+        card.innerHTML = `
+            <span class="dir-card-num">${String(i + 1).padStart(2, '0')}</span>
+            <div class="dir-card-icon">${getStateSVG(city.location)}</div>
+            <div class="dir-card-info">
+                <div class="dir-card-city">${city.name}</div>
+                <div class="dir-card-region">${city.location}</div>
+            </div>
+            <span class="dir-card-arrow">\u2192</span>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// ===== CITY HERO ILLUSTRATIONS =====
+// Simplified SVG scenes representing each city's Chinatown
+const cityIllustrations = {
+    "boston": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Sky gradient -->
+        <rect width="960" height="200" fill="#4A3728" opacity="0.6"/>
+        <!-- Row houses / brownstones -->
+        <rect x="60" y="120" width="80" height="140" rx="2" fill="#8B6F5E"/>
+        <rect x="65" y="135" width="18" height="22" rx="1" fill="#D4AF61" opacity="0.4"/>
+        <rect x="90" y="135" width="18" height="22" rx="1" fill="#D4AF61" opacity="0.3"/>
+        <rect x="150" y="100" width="90" height="160" rx="2" fill="#7A6655"/>
+        <rect x="158" y="115" width="16" height="20" rx="1" fill="#D4AF61" opacity="0.35"/>
+        <rect x="180" y="115" width="16" height="20" rx="1" fill="#D4AF61" opacity="0.45"/>
+        <rect x="205" y="115" width="16" height="20" rx="1" fill="#D4AF61" opacity="0.3"/>
+        <!-- Paifang Gate -->
+        <rect x="340" y="80" width="12" height="180" fill="#C49A3C"/>
+        <rect x="608" y="80" width="12" height="180" fill="#C49A3C"/>
+        <rect x="330" y="70" width="300" height="18" rx="2" fill="#B22234"/>
+        <rect x="340" y="55" width="280" height="18" rx="2" fill="#C49A3C"/>
+        <path d="M335 55 Q480 30 625 55" fill="none" stroke="#B22234" stroke-width="4"/>
+        <rect x="430" y="78" width="100" height="14" rx="2" fill="#F5F0EB" opacity="0.9"/>
+        <text x="480" y="90" text-anchor="middle" fill="#B22234" font-size="10" font-family="serif">唐人街</text>
+        <!-- Lanterns -->
+        <circle cx="400" cy="120" r="12" fill="#B22234" opacity="0.8"/><line x1="400" y1="88" x2="400" y2="108" stroke="#C49A3C" stroke-width="1"/>
+        <circle cx="560" cy="120" r="12" fill="#B22234" opacity="0.8"/><line x1="560" y1="88" x2="560" y2="108" stroke="#C49A3C" stroke-width="1"/>
+        <!-- More buildings right side -->
+        <rect x="700" y="110" width="100" height="150" rx="2" fill="#6B5B4E"/>
+        <rect x="710" y="125" width="18" height="22" rx="1" fill="#D4AF61" opacity="0.35"/>
+        <rect x="740" y="125" width="18" height="22" rx="1" fill="#D4AF61" opacity="0.4"/>
+        <rect x="770" y="125" width="18" height="22" rx="1" fill="#D4AF61" opacity="0.3"/>
+        <rect x="820" y="130" width="80" height="130" rx="2" fill="#8B7B6E"/>
+        <!-- Street -->
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+        <rect x="100" y="287" width="40" height="3" rx="1" fill="#D4AF61" opacity="0.3"/>
+        <rect x="250" y="287" width="40" height="3" rx="1" fill="#D4AF61" opacity="0.3"/>
+        <rect x="450" y="287" width="40" height="3" rx="1" fill="#D4AF61" opacity="0.3"/>
+        <rect x="650" y="287" width="40" height="3" rx="1" fill="#D4AF61" opacity="0.3"/>
+    </svg>`,
+    "calgary": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Mountains backdrop -->
+        <polygon points="0,200 120,80 240,180 360,60 480,160 600,40 720,140 840,70 960,180 960,320 0,320" fill="#4A3728" opacity="0.5"/>
+        <!-- Temple of Heaven inspired cultural centre -->
+        <rect x="380" y="180" width="200" height="80" rx="3" fill="#7A6655"/>
+        <rect x="360" y="168" width="240" height="16" rx="2" fill="#B22234"/>
+        <path d="M370 168 Q480 120 590 168" fill="#B22234" opacity="0.9"/>
+        <path d="M390 145 Q480 105 570 145" fill="#C49A3C" opacity="0.7"/>
+        <circle cx="480" cy="115" r="8" fill="#C49A3C" opacity="0.6"/>
+        <rect x="410" y="195" width="20" height="45" rx="1" fill="#D4AF61" opacity="0.4"/>
+        <rect x="450" y="195" width="60" height="60" rx="2" fill="#5A3D2E" opacity="0.8"/>
+        <rect x="530" y="195" width="20" height="45" rx="1" fill="#D4AF61" opacity="0.35"/>
+        <!-- Side buildings -->
+        <rect x="100" y="160" width="80" height="100" rx="2" fill="#6B5B4E"/>
+        <rect x="780" y="150" width="80" height="110" rx="2" fill="#6B5B4E"/>
+        <!-- Street -->
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "chicago": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Skyline silhouettes -->
+        <rect x="100" y="60" width="40" height="200" rx="2" fill="#4A3728"/>
+        <rect x="160" y="90" width="50" height="170" rx="2" fill="#4A3728" opacity="0.7"/>
+        <rect x="750" y="70" width="45" height="190" rx="2" fill="#4A3728"/>
+        <rect x="820" y="100" width="55" height="160" rx="2" fill="#4A3728" opacity="0.7"/>
+        <!-- Chinatown gate -->
+        <rect x="380" y="100" width="10" height="160" fill="#C49A3C"/>
+        <rect x="570" y="100" width="10" height="160" fill="#C49A3C"/>
+        <rect x="370" y="88" width="220" height="16" rx="2" fill="#B22234"/>
+        <path d="M375 88 Q480 50 585 88" fill="#B22234"/>
+        <path d="M385 68 Q480 38 575 68" fill="#C49A3C" opacity="0.8"/>
+        <rect x="430" y="95" width="100" height="12" rx="1" fill="#F5F0EB" opacity="0.8"/>
+        <text x="480" y="105" text-anchor="middle" fill="#B22234" font-size="9" font-family="serif">天下为公</text>
+        <!-- Lanterns -->
+        <circle cx="420" cy="130" r="10" fill="#B22234" opacity="0.7"/>
+        <circle cx="540" cy="130" r="10" fill="#B22234" opacity="0.7"/>
+        <!-- Buildings -->
+        <rect x="280" y="150" width="70" height="110" rx="2" fill="#6B5B4E"/>
+        <rect x="610" y="140" width="70" height="120" rx="2" fill="#6B5B4E"/>
+        <!-- Street -->
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "denver": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Rocky Mountains -->
+        <polygon points="0,220 150,100 300,200 450,70 600,180 750,50 900,170 960,130 960,320 0,320" fill="#4A3728" opacity="0.4"/>
+        <!-- Simple gate -->
+        <rect x="400" y="120" width="8" height="140" fill="#C49A3C"/>
+        <rect x="552" y="120" width="8" height="140" fill="#C49A3C"/>
+        <rect x="390" y="108" width="180" height="14" rx="2" fill="#B22234"/>
+        <path d="M395 108 Q480 75 565 108" fill="#C49A3C" opacity="0.8"/>
+        <!-- Low-rise buildings -->
+        <rect x="150" y="180" width="120" height="80" rx="2" fill="#6B5B4E"/>
+        <rect x="690" y="170" width="120" height="90" rx="2" fill="#6B5B4E"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "edmonton": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Northern lights hint -->
+        <path d="M0 40 Q240 0 480 30 Q720 60 960 20" fill="none" stroke="#5A7D7C" stroke-width="3" opacity="0.3"/>
+        <path d="M0 60 Q240 20 480 50 Q720 80 960 40" fill="none" stroke="#7A8B6F" stroke-width="2" opacity="0.2"/>
+        <!-- Gate -->
+        <rect x="400" y="130" width="8" height="130" fill="#C49A3C"/>
+        <rect x="552" y="130" width="8" height="130" fill="#C49A3C"/>
+        <rect x="390" y="118" width="180" height="14" rx="2" fill="#B22234"/>
+        <path d="M395 118 Q480 85 565 118" fill="#C49A3C" opacity="0.8"/>
+        <!-- Buildings -->
+        <rect x="200" y="170" width="90" height="90" rx="2" fill="#6B5B4E"/>
+        <rect x="670" y="160" width="90" height="100" rx="2" fill="#6B5B4E"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "honolulu": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Palm trees silhouette -->
+        <line x1="120" y1="260" x2="130" y2="120" stroke="#4A3728" stroke-width="6"/>
+        <ellipse cx="145" cy="110" rx="50" ry="20" fill="#4A3728" opacity="0.6"/>
+        <ellipse cx="110" cy="105" rx="40" ry="18" fill="#4A3728" opacity="0.5"/>
+        <line x1="820" y1="260" x2="810" y2="130" stroke="#4A3728" stroke-width="6"/>
+        <ellipse cx="795" cy="120" rx="45" ry="18" fill="#4A3728" opacity="0.6"/>
+        <!-- Chinese Cultural Plaza -->
+        <rect x="340" y="140" width="280" height="120" rx="3" fill="#7A6655"/>
+        <rect x="350" y="130" width="260" height="14" rx="2" fill="#B22234"/>
+        <path d="M355 130 Q480 100 605 130" fill="#C49A3C" opacity="0.8"/>
+        <rect x="380" y="160" width="22" height="30" rx="1" fill="#D4AF61" opacity="0.4"/>
+        <rect x="420" y="160" width="22" height="30" rx="1" fill="#D4AF61" opacity="0.35"/>
+        <rect x="520" y="160" width="22" height="30" rx="1" fill="#D4AF61" opacity="0.4"/>
+        <rect x="560" y="160" width="22" height="30" rx="1" fill="#D4AF61" opacity="0.35"/>
+        <rect x="450" y="200" width="60" height="60" rx="2" fill="#5A3D2E"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "houston": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Modern skyline -->
+        <rect x="100" y="80" width="35" height="180" rx="2" fill="#4A3728" opacity="0.6"/>
+        <rect x="800" y="90" width="40" height="170" rx="2" fill="#4A3728" opacity="0.6"/>
+        <!-- Gate/plaza -->
+        <rect x="380" y="110" width="8" height="150" fill="#C49A3C"/>
+        <rect x="572" y="110" width="8" height="150" fill="#C49A3C"/>
+        <rect x="370" y="98" width="220" height="16" rx="2" fill="#B22234"/>
+        <path d="M375 98 Q480 60 585 98" fill="#C49A3C" opacity="0.8"/>
+        <rect x="430" y="104" width="100" height="11" rx="1" fill="#F5F0EB" opacity="0.7"/>
+        <!-- Star (Texas) -->
+        <polygon points="480,140 486,156 504,156 490,166 495,183 480,173 465,183 470,166 456,156 474,156" fill="#C49A3C" opacity="0.4"/>
+        <rect x="280" y="180" width="80" height="80" rx="2" fill="#6B5B4E"/>
+        <rect x="620" y="170" width="80" height="90" rx="2" fill="#6B5B4E"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "los-angeles": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Hills -->
+        <ellipse cx="200" cy="260" rx="250" ry="80" fill="#4A3728" opacity="0.3"/>
+        <ellipse cx="760" cy="260" rx="250" ry="80" fill="#4A3728" opacity="0.3"/>
+        <!-- Broadway Chinatown gate -->
+        <rect x="370" y="90" width="10" height="170" fill="#C49A3C"/>
+        <rect x="580" y="90" width="10" height="170" fill="#C49A3C"/>
+        <rect x="360" y="78" width="240" height="16" rx="2" fill="#B22234"/>
+        <path d="M365 78 Q480 40 595 78" fill="#B22234"/>
+        <path d="M375 58 Q480 25 585 58" fill="#C49A3C" opacity="0.8"/>
+        <!-- Dragon motif hint -->
+        <path d="M400 140 Q430 120 460 140 Q490 160 520 140 Q550 120 560 140" fill="none" stroke="#C49A3C" stroke-width="2" opacity="0.5"/>
+        <rect x="180" y="170" width="100" height="90" rx="2" fill="#6B5B4E"/>
+        <rect x="680" y="160" width="100" height="100" rx="2" fill="#6B5B4E"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "manhattan": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Tall buildings / tenements -->
+        <rect x="60" y="60" width="50" height="200" rx="2" fill="#4A3728"/>
+        <rect x="120" y="80" width="45" height="180" rx="2" fill="#4A3728" opacity="0.8"/>
+        <rect x="780" y="50" width="50" height="210" rx="2" fill="#4A3728"/>
+        <rect x="840" y="75" width="55" height="185" rx="2" fill="#4A3728" opacity="0.8"/>
+        <!-- Dense Chinatown streetscape -->
+        <rect x="250" y="130" width="70" height="130" rx="2" fill="#7A6655"/>
+        <rect x="330" y="120" width="70" height="140" rx="2" fill="#8B6F5E"/>
+        <rect x="410" y="110" width="60" height="150" rx="2" fill="#6B5B4E"/>
+        <rect x="480" y="115" width="65" height="145" rx="2" fill="#7A6655"/>
+        <rect x="555" y="125" width="70" height="135" rx="2" fill="#8B6F5E"/>
+        <rect x="635" y="130" width="70" height="130" rx="2" fill="#6B5B4E"/>
+        <!-- Shop signs -->
+        <rect x="340" y="200" width="50" height="12" rx="1" fill="#B22234" opacity="0.7"/>
+        <rect x="490" y="195" width="45" height="12" rx="1" fill="#C49A3C" opacity="0.6"/>
+        <rect x="565" y="205" width="50" height="12" rx="1" fill="#B22234" opacity="0.6"/>
+        <!-- Lanterns string -->
+        <circle cx="350" cy="160" r="7" fill="#B22234" opacity="0.6"/>
+        <circle cx="400" cy="155" r="7" fill="#B22234" opacity="0.7"/>
+        <circle cx="450" cy="158" r="7" fill="#B22234" opacity="0.6"/>
+        <circle cx="500" cy="155" r="7" fill="#B22234" opacity="0.7"/>
+        <circle cx="550" cy="160" r="7" fill="#B22234" opacity="0.6"/>
+        <circle cx="600" cy="157" r="7" fill="#B22234" opacity="0.7"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "montreal": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Mont Royal silhouette -->
+        <ellipse cx="480" cy="280" rx="400" ry="120" fill="#4A3728" opacity="0.3"/>
+        <!-- European-style buildings with Chinese signage -->
+        <rect x="280" y="130" width="90" height="130" rx="2" fill="#7A6655"/>
+        <rect x="380" y="120" width="80" height="140" rx="2" fill="#8B6F5E"/>
+        <rect x="470" y="125" width="80" height="135" rx="2" fill="#7A6655"/>
+        <rect x="560" y="130" width="90" height="130" rx="2" fill="#6B5B4E"/>
+        <!-- Gate -->
+        <rect x="440" y="100" width="80" height="14" rx="2" fill="#B22234"/>
+        <path d="M445 100 Q480 80 515 100" fill="#C49A3C" opacity="0.8"/>
+        <!-- Lanterns -->
+        <circle cx="380" cy="160" r="8" fill="#B22234" opacity="0.6"/>
+        <circle cx="580" cy="160" r="8" fill="#B22234" opacity="0.6"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "oakland": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Bay Bridge hint -->
+        <path d="M0 200 Q240 170 480 190 Q720 210 960 180" fill="none" stroke="#4A3728" stroke-width="4" opacity="0.4"/>
+        <!-- Chinatown buildings -->
+        <rect x="300" y="130" width="80" height="130" rx="2" fill="#7A6655"/>
+        <rect x="390" y="120" width="80" height="140" rx="2" fill="#8B6F5E"/>
+        <rect x="480" y="115" width="80" height="145" rx="2" fill="#6B5B4E"/>
+        <rect x="570" y="125" width="80" height="135" rx="2" fill="#7A6655"/>
+        <!-- Lanterns -->
+        <circle cx="390" cy="155" r="8" fill="#B22234" opacity="0.7"/>
+        <circle cx="480" cy="150" r="8" fill="#B22234" opacity="0.7"/>
+        <circle cx="570" cy="155" r="8" fill="#B22234" opacity="0.7"/>
+        <!-- Signs -->
+        <rect x="400" y="190" width="50" height="10" rx="1" fill="#C49A3C" opacity="0.5"/>
+        <rect x="500" y="195" width="45" height="10" rx="1" fill="#B22234" opacity="0.5"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "ottawa": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Parliament hint -->
+        <rect x="700" y="120" width="80" height="140" rx="2" fill="#4A3728" opacity="0.5"/>
+        <polygon points="740,120 720,90 760,90" fill="#4A3728" opacity="0.5"/>
+        <!-- Chinatown area -->
+        <rect x="300" y="150" width="80" height="110" rx="2" fill="#7A6655"/>
+        <rect x="390" y="140" width="80" height="120" rx="2" fill="#8B6F5E"/>
+        <rect x="480" y="145" width="80" height="115" rx="2" fill="#6B5B4E"/>
+        <!-- Gate arch -->
+        <rect x="430" y="120" width="100" height="14" rx="2" fill="#B22234"/>
+        <path d="M435 120 Q480 95 525 120" fill="#C49A3C" opacity="0.8"/>
+        <circle cx="430" cy="155" r="7" fill="#B22234" opacity="0.6"/>
+        <circle cx="530" cy="155" r="7" fill="#B22234" opacity="0.6"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "philadelphia": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Liberty Bell hint -->
+        <path d="M820 130 Q840 120 860 130 L860 180 Q840 190 820 180 Z" fill="#4A3728" opacity="0.5"/>
+        <!-- Chinatown gate -->
+        <rect x="380" y="100" width="10" height="160" fill="#C49A3C"/>
+        <rect x="570" y="100" width="10" height="160" fill="#C49A3C"/>
+        <rect x="370" y="88" width="220" height="16" rx="2" fill="#B22234"/>
+        <path d="M375 88 Q480 50 585 88" fill="#B22234"/>
+        <path d="M380 68 Q480 35 580 68" fill="#C49A3C" opacity="0.8"/>
+        <rect x="430" y="94" width="100" height="12" rx="1" fill="#F5F0EB" opacity="0.8"/>
+        <text x="480" y="104" text-anchor="middle" fill="#B22234" font-size="9" font-family="serif">费城唐人街</text>
+        <!-- Side buildings -->
+        <rect x="200" y="160" width="90" height="100" rx="2" fill="#6B5B4E"/>
+        <rect x="670" y="150" width="90" height="110" rx="2" fill="#6B5B4E"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "san-francisco": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Hills -->
+        <ellipse cx="200" cy="280" rx="200" ry="60" fill="#4A3728" opacity="0.3"/>
+        <ellipse cx="750" cy="280" rx="200" ry="50" fill="#4A3728" opacity="0.3"/>
+        <!-- Dragon Gate -->
+        <rect x="370" y="80" width="12" height="180" fill="#C49A3C"/>
+        <rect x="578" y="80" width="12" height="180" fill="#C49A3C"/>
+        <rect x="360" y="68" width="240" height="16" rx="2" fill="#B22234"/>
+        <path d="M365 68 Q480 30 595 68" fill="#B22234"/>
+        <path d="M370 48 Q480 15 590 48" fill="#C49A3C" opacity="0.9"/>
+        <rect x="430" y="74" width="100" height="12" rx="1" fill="#F5F0EB" opacity="0.9"/>
+        <text x="480" y="84" text-anchor="middle" fill="#B22234" font-size="9" font-family="serif">天下为公</text>
+        <!-- Dense buildings -->
+        <rect x="200" y="140" width="70" height="120" rx="2" fill="#7A6655"/>
+        <rect x="680" y="130" width="70" height="130" rx="2" fill="#7A6655"/>
+        <!-- Lanterns -->
+        <circle cx="420" cy="120" r="10" fill="#B22234" opacity="0.7"/>
+        <circle cx="480" cy="115" r="10" fill="#B22234" opacity="0.8"/>
+        <circle cx="540" cy="120" r="10" fill="#B22234" opacity="0.7"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "toronto": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- CN Tower silhouette -->
+        <rect x="820" y="20" width="6" height="240" fill="#4A3728" opacity="0.5"/>
+        <ellipse cx="823" cy="80" rx="15" ry="6" fill="#4A3728" opacity="0.5"/>
+        <!-- Spadina Ave buildings -->
+        <rect x="250" y="130" width="80" height="130" rx="2" fill="#7A6655"/>
+        <rect x="340" y="120" width="80" height="140" rx="2" fill="#8B6F5E"/>
+        <rect x="430" y="110" width="80" height="150" rx="2" fill="#6B5B4E"/>
+        <rect x="520" y="120" width="80" height="140" rx="2" fill="#7A6655"/>
+        <rect x="610" y="130" width="80" height="130" rx="2" fill="#8B6F5E"/>
+        <!-- Signs -->
+        <rect x="350" y="175" width="55" height="12" rx="1" fill="#B22234" opacity="0.6"/>
+        <rect x="445" y="170" width="50" height="12" rx="1" fill="#C49A3C" opacity="0.5"/>
+        <rect x="530" y="178" width="55" height="12" rx="1" fill="#B22234" opacity="0.6"/>
+        <!-- Lanterns -->
+        <circle cx="380" cy="150" r="8" fill="#B22234" opacity="0.6"/>
+        <circle cx="480" cy="148" r="8" fill="#B22234" opacity="0.7"/>
+        <circle cx="580" cy="150" r="8" fill="#B22234" opacity="0.6"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "vancouver": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- North Shore Mountains -->
+        <polygon points="0,200 180,80 360,190 540,60 720,170 900,50 960,120 960,320 0,320" fill="#4A3728" opacity="0.35"/>
+        <!-- Millennium Gate -->
+        <rect x="370" y="90" width="12" height="170" fill="#C49A3C"/>
+        <rect x="578" y="90" width="12" height="170" fill="#C49A3C"/>
+        <rect x="360" y="78" width="240" height="16" rx="2" fill="#B22234"/>
+        <path d="M365 78 Q480 40 595 78" fill="#B22234"/>
+        <path d="M370 58 Q480 25 590 58" fill="#C49A3C" opacity="0.9"/>
+        <rect x="430" y="84" width="100" height="12" rx="1" fill="#F5F0EB" opacity="0.8"/>
+        <!-- Heritage buildings -->
+        <rect x="200" y="150" width="80" height="110" rx="2" fill="#7A6655"/>
+        <rect x="680" y="140" width="80" height="120" rx="2" fill="#7A6655"/>
+        <!-- Sam Kee building (narrow) -->
+        <rect x="290" y="200" width="18" height="60" rx="1" fill="#8B6F5E"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "victoria": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Water/harbor hint -->
+        <path d="M0 240 Q240 230 480 238 Q720 246 960 235" fill="none" stroke="#5A7D7C" stroke-width="2" opacity="0.3"/>
+        <!-- Heritage buildings with Chinese architecture -->
+        <rect x="320" y="140" width="80" height="120" rx="2" fill="#7A6655"/>
+        <rect x="410" y="130" width="80" height="130" rx="2" fill="#8B6F5E"/>
+        <rect x="500" y="135" width="80" height="125" rx="2" fill="#6B5B4E"/>
+        <!-- Gate of Harmonious Interest -->
+        <rect x="430" y="110" width="100" height="14" rx="2" fill="#B22234"/>
+        <path d="M435 110 Q480 85 525 110" fill="#C49A3C" opacity="0.8"/>
+        <!-- Lanterns -->
+        <circle cx="440" cy="150" r="7" fill="#B22234" opacity="0.6"/>
+        <circle cx="520" cy="150" r="7" fill="#B22234" opacity="0.6"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`,
+    "washington-dc": `<svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="320" fill="#3D2B1F"/>
+        <!-- Capitol dome hint -->
+        <rect x="750" y="140" width="100" height="120" rx="2" fill="#4A3728" opacity="0.5"/>
+        <ellipse cx="800" cy="140" rx="40" ry="25" fill="#4A3728" opacity="0.5"/>
+        <!-- Friendship Archway -->
+        <rect x="360" y="80" width="14" height="180" fill="#C49A3C"/>
+        <rect x="586" y="80" width="14" height="180" fill="#C49A3C"/>
+        <rect x="350" y="68" width="260" height="18" rx="2" fill="#B22234"/>
+        <path d="M355 68 Q480 25 605 68" fill="#B22234"/>
+        <path d="M360 48 Q480 10 600 48" fill="#C49A3C"/>
+        <path d="M370 33 Q480 2 590 33" fill="#B22234" opacity="0.7"/>
+        <rect x="425" y="74" width="110" height="14" rx="1" fill="#F5F0EB" opacity="0.85"/>
+        <text x="480" y="86" text-anchor="middle" fill="#B22234" font-size="10" font-family="serif">友谊牌楼</text>
+        <!-- Lanterns -->
+        <circle cx="420" cy="115" r="10" fill="#B22234" opacity="0.7"/>
+        <circle cx="540" cy="115" r="10" fill="#B22234" opacity="0.7"/>
+        <rect x="200" y="170" width="80" height="90" rx="2" fill="#6B5B4E"/>
+        <rect x="0" y="260" width="960" height="60" fill="#2C2C2C"/>
+    </svg>`
+};
+
+// ===== BADGE DEFINITIONS =====
+// Each city gets exploration badges that users can "claim"
+const badgeTemplates = [
+    { id: "visited", label: "Visited", color: "red", icon: `<svg viewBox="0 0 40 40"><circle cx="20" cy="13" r="4" fill="#E8485C"/><path d="M20 18 L26 30 L20 27 L14 30 Z" fill="#E8485C" opacity="0.8"/><path d="M12 32 Q20 36 28 32" fill="none" stroke="#E8485C" stroke-width="1.5" stroke-linecap="round"/></svg>` },
+    { id: "food", label: "Tried Local Food", color: "orange", icon: `<svg viewBox="0 0 40 40"><ellipse cx="20" cy="24" rx="11" ry="7" fill="#E8842A" opacity="0.3"/><circle cx="16" cy="18" r="4" fill="#E8842A"/><circle cx="24" cy="16" r="3.5" fill="#E8842A" opacity="0.8"/><circle cx="20" cy="22" r="3" fill="#E8842A" opacity="0.6"/><path d="M14 10 Q16 6 18 10" fill="none" stroke="#E8842A" stroke-width="1.5" opacity="0.5"/><path d="M20 8 Q22 4 24 8" fill="none" stroke="#E8842A" stroke-width="1.5" opacity="0.5"/></svg>` },
+    { id: "history", label: "Learned History", color: "blue", icon: `<svg viewBox="0 0 40 40"><rect x="11" y="9" width="18" height="22" rx="2" fill="#4A90D9" opacity="0.25"/><rect x="13" y="11" width="14" height="18" rx="1" fill="#4A90D9"/><line x1="16" y1="16" x2="24" y2="16" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="20" x2="24" y2="20" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="24" x2="20" y2="24" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>` },
+    { id: "photo", label: "Took a Photo", color: "purple", icon: `<svg viewBox="0 0 40 40"><rect x="7" y="14" width="26" height="17" rx="3" fill="#9B59B6"/><circle cx="20" cy="22" r="5" fill="white" opacity="0.9"/><circle cx="20" cy="22" r="3" fill="#9B59B6" opacity="0.6"/><rect x="15" y="10" width="10" height="5" rx="2" fill="#9B59B6"/><circle cx="29" cy="18" r="1.5" fill="#C39BD3"/></svg>` },
+    { id: "shop", label: "Shopped Local", color: "green", icon: `<svg viewBox="0 0 40 40"><path d="M11 17 L15 8 L25 8 L29 17" fill="#4CAF50"/><rect x="11" y="17" width="18" height="15" rx="2" fill="#4CAF50" opacity="0.75"/><circle cx="15" cy="17" r="2.5" fill="#66BB6A"/><circle cx="20" cy="17" r="2.5" fill="#81C784"/><circle cx="25" cy="17" r="2.5" fill="#66BB6A"/><line x1="20" y1="22" x2="20" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/></svg>` },
+    { id: "connect", label: "Met Community", color: "teal", icon: `<svg viewBox="0 0 40 40"><circle cx="14" cy="13" r="4" fill="#26A69A"/><circle cx="26" cy="13" r="4" fill="#26A69A" opacity="0.75"/><circle cx="20" cy="16" r="3.5" fill="#4DB6AC"/><path d="M6 32 C6 24 20 22 20 28" fill="#26A69A" opacity="0.5"/><path d="M20 28 C20 22 34 24 34 32" fill="#26A69A" opacity="0.5"/><path d="M10 34 C10 26 30 26 30 34" fill="#26A69A" opacity="0.7"/></svg>` }
+];
+
+// Load claimed badges from localStorage
+function getClaimedBadges(cityId) {
+    try {
+        const data = JSON.parse(localStorage.getItem('chinatown-passport-badges') || '{}');
+        return data[cityId] || [];
+    } catch { return []; }
+}
+
+function toggleBadge(cityId, badgeId) {
+    try {
+        const data = JSON.parse(localStorage.getItem('chinatown-passport-badges') || '{}');
+        if (!data[cityId]) data[cityId] = [];
+        const idx = data[cityId].indexOf(badgeId);
+        if (idx >= 0) data[cityId].splice(idx, 1);
+        else data[cityId].push(badgeId);
+        localStorage.setItem('chinatown-passport-badges', JSON.stringify(data));
+        // Toggle visual
+        const el = document.querySelector(`[data-badge="${cityId}-${badgeId}"]`);
+        if (el) el.classList.toggle('claimed');
+    } catch {}
+}
+
+// ===== BUILD CITY PAGES =====
+function buildCityPages() {
+    const container = document.getElementById('city-pages-container');
+
+    cities.forEach((city, idx) => {
+        const prevCity = idx > 0 ? cities[idx - 1] : null;
+        const nextCity = idx < cities.length - 1 ? cities[idx + 1] : null;
+        const num = String(idx + 1).padStart(2, '0');
+
+        const factsHtml = city.facts.map(f =>
+            `<div class="fact-item"><div class="fact-value">${f.value}</div><div class="fact-label">${f.label}</div></div>`
+        ).join('');
+
+        const strengthsHtml = city.strengths.map(s => `<li>${s}</li>`).join('');
+        const challengesHtml = city.challenges.map(c => `<li>${c}</li>`).join('');
+        const orgsHtml = city.orgs.map(o =>
+            `<li><strong>${o.name}</strong><span>${o.desc}</span></li>`
+        ).join('');
+
+        // Quick nav dropdown buttons
+        const quickNavBtns = cities.map((c, ci) =>
+            `<button onclick="showPage('page-city-${c.id}'); closeAllDropdowns();" class="${c.id === city.id ? 'active-city' : ''}">${String(ci+1).padStart(2,'0')}. ${c.name}</button>`
+        ).join('');
+
+        // City illustration
+        const illustrationSvg = cityIllustrations[city.id] || cityIllustrations["boston"];
+
+        // Badges
+        const claimed = getClaimedBadges(city.id);
+        const badgesHtml = badgeTemplates.map(b => {
+            const isClaimed = claimed.includes(b.id);
+            return `<div class="badge ${isClaimed ? 'claimed' : ''}" data-badge="${city.id}-${b.id}" data-color="${b.color}" onclick="toggleBadge('${city.id}','${b.id}')">
+                <div class="badge-icon">${b.icon}</div>
+                <div class="badge-label">${b.label}</div>
+                <div class="badge-tap">tap to claim</div>
+            </div>`;
+        }).join('');
+
+        const page = document.createElement('div');
+        page.className = 'page';
+        page.id = 'page-city-' + city.id;
+        page.innerHTML = `
+            <nav class="city-page-nav">
+                <div class="city-page-nav-inner">
+                    <button class="nav-btn" onclick="showPage('page-directory')">\u2190 Passport</button>
+                    <span class="nav-title">${num}. ${city.name}</span>
+                    <div class="nav-arrows">
+                        <button class="nav-arrow-btn" ${prevCity ? `onclick="showPage('page-city-${prevCity.id}')"` : 'disabled'} title="${prevCity ? prevCity.name : ''}">\u2190</button>
+                        <button class="nav-arrow-btn" ${nextCity ? `onclick="showPage('page-city-${nextCity.id}')"` : 'disabled'} title="${nextCity ? nextCity.name : ''}">\u2192</button>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="city-detail">
+                <div class="city-hero">
+                    <div class="city-hero-illustration">${illustrationSvg}</div>
+                    <div class="city-hero-overlay">
+                        <div class="city-hero-number">No. ${num} of 18</div>
+                        <h1 class="city-hero-name">${city.name}</h1>
+                        <div class="city-hero-chinese">${city.chinese}</div>
+                        <div class="city-hero-location">${city.location}</div>
+                    </div>
+                </div>
+
+                <div class="badges-section">
+                    <div class="badges-section-title">Exploration Badges</div>
+                    <div class="badges-section-subtitle">Tap to collect as you explore</div>
+                    <div class="badges-grid">${badgesHtml}</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-label about">About</div>
+                    <h3>History & Notable Information</h3>
+                    <p>${city.about}</p>
+                    <div class="quick-facts">${factsHtml}</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-label strengths">Opportunities & Strengths</div>
+                    <h3>Opportunities & Strengths</h3>
+                    <ul>${strengthsHtml}</ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-label challenges">Challenges</div>
+                    <h3>Challenges</h3>
+                    <ul>${challengesHtml}</ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-label orgs">Organizations</div>
+                    <h3>Key Organizations</h3>
+                    <ul class="org-list">${orgsHtml}</ul>
+                </div>
+
+                <div class="city-bottom-nav">
+                    ${prevCity
+                        ? `<button class="bottom-nav-btn" onclick="showPage('page-city-${prevCity.id}')">\u2190 ${prevCity.name}</button>`
+                        : `<button class="bottom-nav-btn" onclick="showPage('page-directory')">\u2190 Directory</button>`
+                    }
+
+                    <div class="city-quick-nav">
+                        <button class="bottom-nav-btn" onclick="toggleDropdown(this)">Jump to City \u25B4</button>
+                        <div class="city-quick-nav-dropdown">${quickNavBtns}</div>
+                    </div>
+
+                    ${nextCity
+                        ? `<button class="bottom-nav-btn primary" onclick="showPage('page-city-${nextCity.id}')">${nextCity.name} \u2192</button>`
+                        : `<button class="bottom-nav-btn primary" onclick="showPage('page-directory')">Back to Directory</button>`
+                    }
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-logo">Chinatown Solidarity Summit 2026</div>
+                <p>Connecting Chinatowns across North America</p>
+            </footer>
+        `;
+        container.appendChild(page);
+    });
+}
+
+// ===== DROPDOWN TOGGLE =====
+function toggleDropdown(btn) {
+    const dropdown = btn.nextElementSibling;
+    const isOpen = dropdown.classList.contains('show');
+    closeAllDropdowns();
+    if (!isOpen) dropdown.classList.add('show');
+}
+
+function closeAllDropdowns() {
+    document.querySelectorAll('.city-quick-nav-dropdown').forEach(d => d.classList.remove('show'));
+}
+
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.city-quick-nav')) closeAllDropdowns();
+});
+
+// ===== KEYBOARD NAV =====
+document.addEventListener('keydown', (e) => {
+    const activePage = document.querySelector('.page.active');
+    if (!activePage) return;
+    const id = activePage.id;
+
+    if (id.startsWith('page-city-')) {
+        const cityId = id.replace('page-city-', '');
+        const idx = cities.findIndex(c => c.id === cityId);
+        if (e.key === 'ArrowLeft' && idx > 0) {
+            showPage('page-city-' + cities[idx - 1].id);
+        } else if (e.key === 'ArrowRight' && idx < cities.length - 1) {
+            showPage('page-city-' + cities[idx + 1].id);
+        } else if (e.key === 'Escape') {
+            showPage('page-directory');
+        }
+    }
+});
+
+// ===== INIT =====
+buildDirectory();
+buildCityPages();
+</script>
+
+</body>
+</html>
